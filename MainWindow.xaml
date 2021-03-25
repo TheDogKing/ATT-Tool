@@ -1,0 +1,40 @@
+﻿<Window x:Class="ATT_Tool.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ATT_Tool"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        mc:Ignorable="d"
+        Title="ATT Tool" Height="450" Width="800" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label Content="位置：" VerticalAlignment="Center"></Label>
+            <Viewbox Width="500" Height="25" Stretch="UniformToFill">
+                <TextBox Width="500" Height="25" Name="tbfilepath" TextWrapping="Wrap" VerticalContentAlignment="Center"></TextBox>
+            </Viewbox>
+            <Button Content="添加" Height="25" Name="add" Click="add_Click" Margin="10,0" Width="80"></Button>
+            <Button Content="保存" Height="25" Name="save" Click="save_Click" IsEnabled="False"  Margin="10,0" Width="80"></Button>
+        </WrapPanel>
+        <telerik:RadTreeListView x:Name="radTreeListView" 
+                            AutoGenerateColumns="False" 
+                ItemsSource="{Binding models}" Grid.Row="1">
+            <telerik:RadTreeListView.ChildTableDefinitions>
+                <telerik:TreeListViewTableDefinition ItemsSource="{Binding Items}" />
+            </telerik:RadTreeListView.ChildTableDefinitions>
+            <telerik:RadTreeListView.Columns>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding name}" 
+                                    Header="name" />
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding mname}" 
+                                    Header="modifyed name" />
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding type}" 
+                                    Header="type" />
+            </telerik:RadTreeListView.Columns>
+        </telerik:RadTreeListView>
+
+    </Grid>
+</Window>
